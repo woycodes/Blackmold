@@ -1,0 +1,123 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.4.2 effective-5.10 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)
+// swift-module-flags: -target arm64-apple-macos15.0 -enable-objc-interop -enable-library-evolution -language-mode 5 -Onone -enable-experimental-feature DebugDescriptionMacro -module-name BlackmoldKit -package-name blackmold
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4.2
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_Concurrency::MainActor public protocol BlackmoldPlugin : AnyObject {
+  @_Concurrency::MainActor init()
+  @_Concurrency::MainActor func start(_ host: any BlackmoldKit::PluginHost)
+  @_Concurrency::MainActor func stop()
+  @_Concurrency::MainActor var settingsView: SwiftUICore::AnyView? { get }
+}
+extension BlackmoldKit::BlackmoldPlugin {
+  @_Concurrency::MainActor public func stop()
+  @_Concurrency::MainActor public var settingsView: SwiftUICore::AnyView? {
+    get
+  }
+}
+@_Concurrency::MainActor public protocol PluginHost : AnyObject {
+  @_Concurrency::MainActor var notch: BlackmoldKit::NotchSize { get }
+  @_Concurrency::MainActor var defaults: Foundation::UserDefaults { get }
+  @_Concurrency::MainActor var isOpen: Swift::Bool { get }
+  @_Concurrency::MainActor var openPage: Swift::String? { get }
+  @_Concurrency::MainActor func show(_ activity: BlackmoldKit::PluginActivity?)
+  @_Concurrency::MainActor func peek(_ activity: BlackmoldKit::PluginActivity, for seconds: Swift::Double)
+  @_Concurrency::MainActor func addPage(_ page: BlackmoldKit::PluginPage)
+  @_Concurrency::MainActor func open(page id: Swift::String, untilVisited: Swift::Bool)
+  @_Concurrency::MainActor func close()
+  @_Concurrency::MainActor func beginTyping()
+  @_Concurrency::MainActor func endTyping()
+  @_Concurrency::MainActor func onURL(host: Swift::String, _ handler: @escaping @_Concurrency::MainActor (Foundation::URL) -> Swift::Void)
+  @_Concurrency::MainActor func addSearchAction(_ action: BlackmoldKit::PluginSearchAction)
+  @_Concurrency::MainActor func tick()
+}
+public struct NotchSize : Swift::Sendable {
+  public var width: CoreFoundation::CGFloat
+  public var height: CoreFoundation::CGFloat
+  public var earWidth: CoreFoundation::CGFloat
+  public var earIconSize: CoreFoundation::CGFloat
+  public var earTopInset: CoreFoundation::CGFloat
+  public var earEdgeInset: CoreFoundation::CGFloat
+  public static let pageWidth: CoreFoundation::CGFloat
+  public static let pageInset: CoreFoundation::CGFloat
+  public static let pageHeight: CoreFoundation::CGFloat
+  public static let tallPageHeight: CoreFoundation::CGFloat
+  public static let contentTop: CoreFoundation::CGFloat
+  public static let textRowHeight: CoreFoundation::CGFloat
+  public init(width: CoreFoundation::CGFloat, height: CoreFoundation::CGFloat, earWidth: CoreFoundation::CGFloat, earIconSize: CoreFoundation::CGFloat, earTopInset: CoreFoundation::CGFloat, earEdgeInset: CoreFoundation::CGFloat)
+}
+public struct PluginActivity {
+  public var priority: Swift::Int
+  public var left: SwiftUICore::AnyView
+  public var right: SwiftUICore::AnyView
+  public var line: SwiftUICore::AnyView?
+  public init<Left, Right>(priority: Swift::Int = 0, @SwiftUICore::ViewBuilder left: () -> Left, @SwiftUICore::ViewBuilder right: () -> Right) where Left : SwiftUICore::View, Right : SwiftUICore::View
+  public init<Left, Right, Line>(priority: Swift::Int = 0, @SwiftUICore::ViewBuilder left: () -> Left, @SwiftUICore::ViewBuilder right: () -> Right, @SwiftUICore::ViewBuilder line: () -> Line) where Left : SwiftUICore::View, Right : SwiftUICore::View, Line : SwiftUICore::View
+}
+public struct PluginPage {
+  public var id: Swift::String
+  public var title: Swift::String
+  public var symbol: Swift::String
+  public var height: @_Concurrency::MainActor () -> CoreFoundation::CGFloat
+  public var content: @_Concurrency::MainActor () -> SwiftUICore::AnyView
+  public var leftEar: (@_Concurrency::MainActor () -> SwiftUICore::AnyView)?
+  public var rightEar: (@_Concurrency::MainActor () -> SwiftUICore::AnyView)?
+  public var takesKeyboard: Swift::Bool
+  public var isPreferred: @_Concurrency::MainActor () -> Swift::Bool
+  public init<Content>(id: Swift::String, title: Swift::String, symbol: Swift::String, takesKeyboard: Swift::Bool = false, height: @escaping @_Concurrency::MainActor () -> CoreFoundation::CGFloat = { NotchSize.pageHeight }, isPreferred: @escaping @_Concurrency::MainActor () -> Swift::Bool = { false }, @SwiftUICore::ViewBuilder content: @escaping @_Concurrency::MainActor () -> Content) where Content : SwiftUICore::View
+}
+public struct PluginSearchAction {
+  public var label: Swift::String
+  public var icon: SwiftUICore::AnyView
+  public var perform: @_Concurrency::MainActor (Swift::String) -> Swift::Void
+  public init<Icon>(label: Swift::String, @SwiftUICore::ViewBuilder icon: () -> Icon, perform: @escaping @_Concurrency::MainActor (Swift::String) -> Swift::Void) where Icon : SwiftUICore::View
+}
+final public class PluginBox {
+  final public let plugin: any BlackmoldKit::BlackmoldPlugin
+  public init(_ plugin: any BlackmoldKit::BlackmoldPlugin)
+  @objc deinit
+}
+public enum Motion {
+  public static let notch: SwiftUICore::Animation
+  public static let page: SwiftUICore::Animation
+  public static let contentIn: SwiftUICore::Animation
+  public static let contentOut: SwiftUICore::Animation
+  public static let bounce: SwiftUICore::Animation
+  public static let pop: SwiftUICore::Animation
+  public static let popOut: SwiftUICore::Animation
+  public static let searchClose: SwiftUICore::Animation
+}
+@_Concurrency::MainActor @preconcurrency public struct PopIn : SwiftUICore::ViewModifier {
+  @_Concurrency::MainActor @preconcurrency public init()
+  @_Concurrency::MainActor @preconcurrency public func body(content: BlackmoldKit::PopIn.SwiftUICore::Content) -> some SwiftUICore::View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s12BlackmoldKit5PopInV4body7contentQr7SwiftUI21_ViewModifier_ContentVyACG_tF", 0) __
+}
+@_Concurrency::MainActor @preconcurrency public struct DoneCheck : SwiftUICore::View {
+  @_Concurrency::MainActor @preconcurrency public init()
+  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s12BlackmoldKit9DoneCheckV4bodyQrvp", 0) __
+}
+@_Concurrency::MainActor @preconcurrency public struct ZoomButtonStyle : SwiftUI::ButtonStyle {
+  @_Concurrency::MainActor @preconcurrency public init()
+  @_Concurrency::MainActor @preconcurrency public func makeBody(configuration: BlackmoldKit::ZoomButtonStyle.SwiftUI::Configuration) -> some SwiftUICore::View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s12BlackmoldKit15ZoomButtonStyleV8makeBody13configurationQr7SwiftUI0dE13ConfigurationV_tF", 0) __
+}
+extension SwiftUI::ButtonStyle where Self == BlackmoldKit::ZoomButtonStyle {
+  @_Concurrency::MainActor @preconcurrency public static var zoom: BlackmoldKit::ZoomButtonStyle {
+    get
+  }
+}
+public enum TimeFormatting {
+  public static func short(_ seconds: Foundation::TimeInterval) -> Swift::String
+}
+extension BlackmoldKit::PopIn : Swift::Sendable {}
+extension BlackmoldKit::DoneCheck : Swift::Sendable {}
+extension BlackmoldKit::ZoomButtonStyle : Swift::Sendable {}

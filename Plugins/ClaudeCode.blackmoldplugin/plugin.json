@@ -1,0 +1,8 @@
+{
+  "id": "com.woycodes.claudecode",
+  "name": "Claude Code",
+  "version": "1.0",
+  "author": "woycodes",
+  "description": "What Claude Code is doing, on the notch: thinking, working, waiting for you, done. And a notice when a usage limit has reset.",
+  "principalClass": "ClaudeCodePlugin"
+}

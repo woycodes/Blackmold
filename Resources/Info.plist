@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>Blackmold</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.example.blackmold</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Blackmold</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.3.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.example.blackmold</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>blackmold</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>9</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>15.0</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Blackmold reads your player's track info and sends play, pause and skip commands.</string>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>Blackmold reads the sound your music player outputs to draw the spectrum in the notch. Nothing is recorded or sent anywhere.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Blackmold finds your Bluetooth game controller so it can disconnect it from the notch.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Blackmold shows your events for today in the notch.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Blackmold shows your events for today in the notch.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Blackmold shows your camera on the Mirror page in the notch. Nothing is recorded or sent anywhere.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>You own this code.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Blackmold records voice memos and listens when you talk to Gemini from the notch. Voice memos stay on your Mac; what you say to Gemini goes to Google.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Blackmold turns what you say into search text when you press the mic in search.</string>
+</dict>
+</plist>

@@ -1,0 +1,8 @@
+{
+  "id": "com.woycodes.gemini",
+  "name": "Gemini",
+  "version": "1.0",
+  "author": "woycodes",
+  "description": "Ask Gemini from the notch with your Gemini API key: type, talk, share a photo, or talk live. Adds \"Ask Gemini\" to search.",
+  "principalClass": "GeminiPlugin"
+}
